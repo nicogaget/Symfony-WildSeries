@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bleuf ">
+    <a class="navbar navbar-brand" href="{{ path('wild_index') }}">WILD SERIES</a>
+    <button class=" jaune navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+            aria-expanded="true" aria-label="Toggle navigation" >
+        <span class="bleuf navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar navbar-nav">
+{#            <a class="nav-item nav-link" href="{{ path('program_index') }}">Séries</a>#}
+        </div>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Recherche par
+            </a>
+{#            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
+{#                <a class="dropdown-item" href="{{ path('category_index') }}">Catégorie</a>#}
+{#                <a class="dropdown-item" href="{{ path('actor_index') }}">Acteur</a>#}
+{#            </div>#}
+        </div>
+
+{#        <div class="nav-item nav-link">#}
+{#            {% if not app.user %}#}
+{#            <a class="nav-item nav-link" href="{{ path('app_register') }}">Register</a>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        <div>#}
+{#            {% if is_granted("ROLE_ADMIN")  %}#}
+{#                <p>Admin</p>#}
+{#            {%endif%}#}
+
+{#        </div>#}
+{#        <div class="nav-item nav-link">#}
+{#            {% if app.user %}#}
+{#                {{ app.user.nickname }}#}
+{#                <a href="{{ path('app_logout') }}"> Logout</a>#}
+{#            {% else %}#}
+{#                <a href="{{ path('app_login') }}"> SignIn</a>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+{#</nav>#}
+{#{% if is_granted("ROLE_ADMIN")  %}#}
+{#<nav class="navbar navbar-expand-lg bleuc ">#}
+{#    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">#}
+{#        <div class="navbar navbar-nav">#}
+{#            <a class="nav-item nav-link" href="{{ path('program_index') }}">Séries</a>#}
+{#        </div>#}
+{#        <div class="navbar navbar-nav">#}
+{#            <a class="nav-item nav-link" href="{{ path('category_index') }}">Catégories</a>#}
+{#        </div>#}
+{#        <div class="navbar navbar-nav">#}
+{#            <a class="nav-item nav-link" href="{{ path('episode_index') }}">Episodes</a>#}
+{#        </div>#}
+{#        <div class="navbar navbar-nav">#}
+{#            <a class="nav-item nav-link" href="{{ path('actor_index') }}">Acteurs</a>#}
+{#        </div>#}
+{#    </div>#}
+{#</nav>#}
+
+{#{% endif %}#}
