@@ -32,6 +32,11 @@ class Episode
      */
     private $synopsis;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Season::class, inversedBy="episodes")
+     */
+    private $season;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Episode
     public function setSynopsis(string $synopsis): self
     {
         $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    public function getSeason(): ?Season
+    {
+        return $this->season;
+    }
+
+    public function setSeason(?Season $season): self
+    {
+        $this->season = $season;
 
         return $this;
     }
