@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %} Category : {{ category.name }}{% endblock %}
+
+{% block body %}
+
+    {% for program in programs %}
+        <div class="card-program card mb-5" style="max-width: 50%;">
+            <div class="card-prg">
+                <div class="row-card-program row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{{ program.poster}}" class="card-img" alt="{{ program.title }} poster">
+                    </div>
+                    <div class=" col-md-8">
+                        <div class="card-info-title card-body">
+                            <h1 class="card-title">{{ program.id }} - {{ program.title }}</h1>
+                            <p class="card-text">{{ program.summary }}</p>
+                            <p>Categorie : {{ program.category.name }}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <a href="{{ path('wild_index') }}">
+        Retour à l'accueil
+    </a>
+
+{% endblock %}
