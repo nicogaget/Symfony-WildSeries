@@ -1,0 +1,119 @@
+@import "~bootstrap/scss/bootstrap";
+
+$jaune : #FFA800;
+$bleuf :#313651;
+$bleuc : #3288b9;
+
+body{
+    background-color: white;
+    color: $jaune;
+    width: 100%;
+    font-size: 18px;
+    font-family: 'Roboto Slab', serif;
+
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Graduate', cursive;
+}
+
+.navbar{
+    font-size: 36px;
+    font-family: 'Graduate', cursive;
+
+}
+a{
+    color: $jaune;
+}
+.jaune{
+    background-color: $jaune;
+}
+.bleuf{
+    background-color: $bleuf;
+}
+.bleuc{
+    background-color: $bleuc;
+}
+/** page index */
+.index{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: stretch;
+}
+.title{
+    background-color: $bleuc;
+    text-align: center;
+    padding: 0.5rem;
+}
+#card-index{
+    min-width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.row-index{
+
+}
+/* card des series détaillées */
+.card-program{
+    margin: 20px auto auto;
+    background-color: $bleuf;
+    border-radius: 20px;
+}
+.card-prg{
+    background-color: $bleuc;
+    margin: 20px;
+    border-radius: 20px;
+}
+.row-card-program{
+    padding:20px;
+
+}
+.card-img{
+    border-radius: 20px;
+}
+.card-info-title{
+    background-color: $bleuf;
+    margin-left: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.card-info-liste{
+    background-color: $bleuf;
+    margin-left: 20px;
+    border-radius: 20px
+
+}
+.action {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 10px;
+}
+.action a{
+    color: $jaune;
+}
+form{
+    max-width: 90%;
+    margin: auto;
+}
+.edit{
+    margin: 20px;
+    display: flex;
+    flex:8;
+}
+.edit-info{
+    flex: 6;
+}
+.edit-poster{
+    flex: 2;
+}
+.btn{
+    margin-top:20px;
+}
+.liste{
+    display: flex;
+    flex-direction: row;
+}
+.episode{
+    min-width: 120px;
+}
+
