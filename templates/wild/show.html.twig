@@ -2,18 +2,43 @@
 {% block title %}{{ slug }}{% endblock %}
 
 {% block body %}
+    <div class="container-fluid">
+        <div class="card-program card mb-5">
+            <div class="card-prg">
+                <div class="row-card-program row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{{ program.poster}}"  class="card-img" alt="{{ program.title }} ">
+                    </div>
+                    <div class=" col-md-8">
+                        <div class="card-info-title card-body">
+                            <h1 class="card-title">{{ program.title }}</h1>
+                            <h2 class="card-text">{{ program.title }}</h2>
+                            <p class="card-text">{{ program.summary }}</p>
+                        </div>
+                        <div class="card-info-title card-body">
+                            <h1 class="card-title">Les Saisons</h1>
+                            <ul>
+                                {% for season in seasons %}
+                                    <li><a href="{{ path('wild_season', {'id' : season.id}) }}"> {{ season.number }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card-info-title card-body">
+                            <h1 class="card-title">Acteurs :</h1>
+                            <ul>
+                                {% for actor in actors %}
+                                    <li><a href="{{ path('wild_actor', {'id' : actor.id}) }}"> {{ actor.name }}</a></li>
+                                {% endfor %}
+                            </ul>
 
-    <div class="media">
-        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
-        <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
-            <p>{{ program.summary }}</p>
-            <p>Catégorie : {{ program.category.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <a class="btn btn-bleuf" style="margin-top: inherit" href="{{ path('wild_index') }}">
+            Retour à l'accueil
+        </a>
     </div>
-
-    <a href="{{ path('wild_index') }}">
-        Retour à l'accueil
-    </a>
 
 {% endblock %}

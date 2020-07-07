@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>L'acteur</h1>
+
+    <div class="card-program card mb-5" style="max-width: 50%;">
+        <div class="card-prg">
+            <div class="row-card-program row no-gutters">
+{#                <div class="col-md-4">#}
+{#                    <img src="{{ actor.picture}}" class="card-img" alt="Photo de {{ actor.name }}">#}
+{#                </div>#}
+                <div class=" col-md-8">
+                    <div class="card-info-title card-body">
+                        <h1 class="card-title">{{ actor.name }}</h1>
+
+                    </div>
+                    <div class="card-info-title card-body">
+                        <h2>Séries de l'acteur</h2>
+                        <ul>
+                            {% for program in programs %}
+                                <li> <a href="{{ path('wild_show', { 'slug': program.slug }) }}">{{ program.title }}</a> </li>
+                            {% else %}
+                                <li>Aucune série pour cet acteur</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

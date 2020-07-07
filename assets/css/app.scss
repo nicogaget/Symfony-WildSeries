@@ -1,11 +1,9 @@
+@import "vars";
 @import "~bootstrap/scss/bootstrap";
 
-$jaune : #FFA800;
-$bleuf :#313651;
-$bleuc : #3288b9;
 
 body{
-    background-color: white;
+    background-color: $jaune;
     color: $jaune;
     width: 100%;
     font-size: 18px;
@@ -14,6 +12,36 @@ body{
 }
 h1, h2, h3, h4, h5, h6{
     font-family: 'Graduate', cursive;
+}
+
+.btn-bleuc {
+    background-color: $bleuc;
+    color: $jaune;
+    font-size: 1.2em;
+}
+
+.btn-bleuf {
+    background-color: $bleuf;
+    color: $jaune;
+    font-size: 1.2em;
+}
+.btn-bleuf:hover{
+    background-color: $bleuf;
+    color: white;
+    font-size: 1.2em;
+}
+.btn-jaune {
+    background-color: $jaune;
+    color: $bleuf;
+    font-size: 1.2em;
+}
+.btn-jaune:hover {
+    background-color: $jaune;
+    color: white;
+    font-size: 1.2em;
+}
+.btn-danger{
+    font-size: 1.2em;
 }
 
 .navbar{
@@ -70,6 +98,7 @@ a{
 }
 .card-img{
     border-radius: 20px;
+    margin: auto;
 }
 .card-info-title{
     background-color: $bleuf;
@@ -117,3 +146,25 @@ form{
     min-width: 120px;
 }
 
+#program-index{
+    background-color: $bleuc;
+    padding: 20px;
+    font-size: 1.2em;
+    color: $bleuf;
+
+    h1 {
+        color: $jaune;
+    }
+}
+.program-footer {
+    display: inline-flex;
+    width: 100%;
+}
+.delete-btn{
+    margin: inherit;
+}
+.thead-jaune{
+    background-color: $jaune;
+    color: $bleuf;
+    text-align: center;
+}
