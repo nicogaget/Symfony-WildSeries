@@ -32,7 +32,7 @@ class Season
     /**
      * @ORM\Column(type="text")
      */
-    private $descritpion;
+    private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="seasons")
@@ -79,14 +79,14 @@ class Season
         return $this;
     }
 
-    public function getDescritpion(): ?string
+    public function getDescription(): ?string
     {
-        return $this->descritpion;
+        return $this->description;
     }
 
-    public function setDescritpion(string $descritpion): self
+    public function setDescription(string $description): self
     {
-        $this->descritpion = $descritpion;
+        $this->description = $description;
 
         return $this;
     }

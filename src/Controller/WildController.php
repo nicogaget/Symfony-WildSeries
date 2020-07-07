@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Repository\ActorRepository;
 use App\Repository\ProgramRepository;
 use App\Repository\SeasonRepository;
 use App\Service\Slugify;
@@ -25,12 +26,15 @@ class WildController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param ProgramRepository $programRepo
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request) : Response
+    public function index(ActorRepository $actorRepo, ProgramRepository $programRepo, Request $request) : Response
     {
-        $programs = $this->getDoctrine()->getRepository(Program::class)->findAll();
+        $programs =$programRepo->findAll();
+
+        $actors = $actorRepo->findAll();
 
         if (!$programs) {
             throw $this->createNotFoundException(
@@ -42,6 +46,7 @@ class WildController extends AbstractController
         return $this->render('wild/index.html.twig', [
             'website' => 'Wild Séries',
             'programs' => $programs,
+            'actors' => $actors
 
         ]);
     }
@@ -110,16 +115,16 @@ class WildController extends AbstractController
     /**
      * @Route("/season/{id<^[0-9]+$>}", defaults={"id" = null}, name="season")
      * @param SeasonRepository $seasonRepo
-     * @param Slugify $slug
+     * @param int $id
      * @return Response
      */
-    public function showBySeason(SeasonRepository $seasonRepo, Slugify $slug): Response
+    public function showBySeason(SeasonRepository $seasonRepo, int $id): Response
     {
-        if (!$slug){
+        if (!$id){
             throw $this
                 ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
         }
-        $season = $seasonRepo->findOneBy(['slug'=>$slug]);
+        $season = $seasonRepo->findOneBy(['id'=>$id]);
 
         $program =$season->getProgram();
 

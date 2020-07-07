@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card-program card mb-5" style="max-width: 50%;">
+        <div class="card-prg">
+            <div class="row-card-program row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{ program.poster}}" class="card-img" alt="...">
+                </div>
+                <div class=" col-md-8">
+                    <div class="card-info-title card-body">
+                        <h1 class="card-title">{{ program.title }}</h1>
+                        <p class="card-text">{{ program.summary }}</p>
+
+                    </div>
+                    <div class="card-info-liste card-body">
+                        <h3>Liste des épisodes :</h3>
+                        <div>
+                            {% for episode in episodes %}
+                                <div class="liste">
+                                    <p class="episode">Episode : {{ episode.number }} :</p>
+                                    <p>{{ episode.synopsis }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('wild_index') }}">
+        Retour à l'accueil
+    </a>
+{% endblock %}
