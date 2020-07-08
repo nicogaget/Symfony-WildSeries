@@ -27,11 +27,11 @@
                 <td class="bleuc"><img src="{{ program.poster }}" width="200px"></td>
                 <td>{{ program.title }}</td>
                 <td>{{ program.summary }}</td>
-                <td class="align-middle bleuc" width="8%">{{ program.country }}</td>
-                <td class="align-middle" width="6%">{{ program.year }}</td>
+                <td class="align-middle bleuc " width="8%">{{ program.country }}</td>
+                <td class="align-middle " width="6%">{{ program.year }}</td>
                 <td class="btn-actions align-middle bleuc">
-                    <a class="btn btn-bleuf align-middle" href="{{ path('program_show', {'id': program.id}) }}">Voir +</a>
-                    <a class="btn btn-jaune align-middle" href="{{ path('program_edit', {'id': program.id}) }}">Editer</a>
+                    <a class="btn btn-bleuf align-middle" href="{{ path('program_show', {'slug': program.slug}) }}">Voir +</a>
+                    <a class="btn btn-jaune align-middle" href="{{ path('program_edit', {'slug': program.slug}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}

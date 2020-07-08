@@ -3,12 +3,14 @@
 {% block title %}Actor index{% endblock %}
 
 {% block body %}
-    <h1>Actor index</h1>
-
-    <table class="table">
-        <thead>
+<div class="container-fluid " id="actor-index">
+    <h1 class="d-flex justify-content-center m-5 " >Toutes les Acteurs</h1>
+    <div class="container-fluid m-3">
+        <a class="btn btn-bleuf" href="{{ path('actor_new') }}">Ajouter un Acteur</a>
+    </div>
+    <table class="table table-bordered table-index table-index-small ">
+        <thead class="bleuf">
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>actions</th>
             </tr>
@@ -16,11 +18,10 @@
         <tbody>
         {% for actor in actors %}
             <tr>
-                <td>{{ actor.id }}</td>
                 <td>{{ actor.name }}</td>
                 <td>
-                    <a href="{{ path('actor_show', {'id': actor.id}) }}">show</a>
-                    <a href="{{ path('actor_edit', {'id': actor.id}) }}">edit</a>
+                    <a class="btn btn-bleuc" href="{{ path('actor_show', {'slug': actor.slug}) }}">Voir +</a>
+                    <a class="btn btn-bleuf" href="{{ path('actor_edit', {'slug': actor.slug}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -32,4 +33,5 @@
     </table>
 
     <a href="{{ path('actor_new') }}">Create new</a>
+</div>
 {% endblock %}

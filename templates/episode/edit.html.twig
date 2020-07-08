@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Episode{% endblock %}
+{% block title %}Edition épisode{% endblock %}
 
 {% block body %}
-    <h1>Edit Episode</h1>
+    <h1 class="d-flex justify-content-center m-4" >Edition d'un épisode</h1>
 
-    {{ include('episode/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('episode_index') }}">back to list</a>
+    {{ include('episode/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+<div class="program-footer d-flex justify-content-around">
+    <a class="btn btn-bleuc" href="{{ path('episode_index') }}"><- Retour à la list</a>
 
     {{ include('episode/_delete_form.html.twig') }}
+</div>
 {% endblock %}

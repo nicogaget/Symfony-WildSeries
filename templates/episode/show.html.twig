@@ -3,9 +3,10 @@
 {% block title %}Episode{% endblock %}
 
 {% block body %}
-    <h1>Episode</h1>
 
-    <table class="table">
+    <h1 class="d-flex justify-content-center m-4">Fiche Episode</h1>
+<div class="container-fluid">
+    <table class="table table-bordered">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -25,10 +26,12 @@
             </tr>
         </tbody>
     </table>
+    <div class="program-footer d-flex justify-content-around">
+        <a class="btn btn-bleuc" href="{{ path('episode_index') }}"><- Retour à la liste</a>
 
-    <a href="{{ path('episode_index') }}">back to list</a>
+        <a class="btn btn-bleuf" href="{{ path('episode_edit', {'slug': episode.slug}) }}">Edition</a>
 
-    <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
-
-    {{ include('episode/_delete_form.html.twig') }}
+        {{ include('episode/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}
