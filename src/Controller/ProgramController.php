@@ -24,7 +24,7 @@ class ProgramController extends AbstractController
     public function index(ProgramRepository $programRepository): Response
     {
         return $this->render('program/index.html.twig', [
-            'programs' => $programRepository->findAll(),
+            'programs' => $programRepository->findAll()
         ]);
     }
 
@@ -57,11 +57,12 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="program_show", methods={"GET"})
+     * @Route("/{slug}", name="program_show", methods={"GET"})
      * @param Program $program
+     * @param Slugify $slugify
      * @return Response
      */
-    public function show(Program $program): Response
+    public function show(Program $program, Slugify $slugify): Response
     {
         return $this->render('program/show.html.twig', [
             'program' => $program,
@@ -69,7 +70,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="program_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="program_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Program $program
      * @return Response
@@ -92,7 +93,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="program_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="program_delete", methods={"DELETE"})
      * @param Request $request
      * @param Program $program
      * @return Response

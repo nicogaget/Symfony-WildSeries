@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Category{% endblock %}
+{% block title %}Edition de catégorie{% endblock %}
 
 {% block body %}
-    <h1>Edit Category</h1>
+    <h1 class="d-flex justify-content-around m-5">Edition de catégorie</h1>
 
-    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a class="btn btn-bleuc" href="{{ path('category_index') }}">back to list</a>
+    {{ include('category/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+<div class="program-footer d-flex justify-content-around">
+    <a class="btn btn-bleuc" href="{{ path('category_index') }}"><- Retour à la liste</a>
 
     {{ include('category/_delete_form.html.twig') }}
+</div>
 {% endblock %}

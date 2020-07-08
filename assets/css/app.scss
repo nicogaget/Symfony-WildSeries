@@ -16,6 +16,7 @@ h1, h2, h3, h4, h5, h6{
 }
 h1 {
     font-size: 3vw;
+    color: $bleuf;
 }
 
 .btn-bleuc {
@@ -156,10 +157,6 @@ form{
     font-size: 1.2em;
     color: $bleuf;
 
-    h1 {
-        color: $bleuf;
-    }
-
     thead{
         background-color: $bleuf;
         color: $jaune;
@@ -175,11 +172,27 @@ form{
 .delete-btn{
     margin: inherit;
 }
-.show {
+.table-show {
     width: 70%;
 
     th {
         background-color: $bleuc;
     }
+}
+
+.table-index {
+    thead{
+        background-color: $bleuf;
+        color: $jaune;
+        text-align: center;
+        font-size: 1.3em;
+        letter-spacing: 3px;
+        margin: auto;
+    }
+}
+
+.table-index-small {
+    width: 50%;
+    margin: auto;
 }
 
