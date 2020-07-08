@@ -30,7 +30,7 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
-     * * @Assert\NotBlank(message="Chaque programme doit avoir un titre")
+     *  @Assert\NotBlank(message="Chaque programme doit avoir un titre")
      */
     private $title;
 
@@ -54,7 +54,8 @@ class Program
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="programs")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
+     *  @Assert\NotBlank(message="Chaque programme doit avoir une catégorie")
      */
     private $category;
 

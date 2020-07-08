@@ -13,6 +13,9 @@ https://www.loom.com/share/7ff44c1eb4c44166a72dfbe28250394c
 Lien video pour la quête 14 - Symfony : Doctrine relations “Many-To-Many”
 https://www.loom.com/share/29569c128e6f4e4ca95dd06b5f372692
 
+Lien vidéo pour la quête 15 - Symfony : EntityType
+https://www.loom.com/share/beb29a01f4894fb7a03d6f2ef1a17c76
+
 
 lien video 1/2 pour la quete 16 - Symfony : Les fixtures
 https://www.loom.com/share/61679059d36c4de69d63b3115350d383

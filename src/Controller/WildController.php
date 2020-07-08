@@ -26,6 +26,7 @@ class WildController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param ActorRepository $actorRepo
      * @param ProgramRepository $programRepo
      * @param Request $request
      * @return Response
@@ -170,6 +171,7 @@ class WildController extends AbstractController
         $actor= $actorRepo->findOneBy(['slug'=>$slug]);
 
         $programs = $actor->getPrograms();
+
 
         return $this->render('wild/actor.html.twig',[
             'actor'=>$actor,

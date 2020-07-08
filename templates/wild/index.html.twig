@@ -2,7 +2,7 @@
 {% block title %}Tous les programmes{% endblock %}
 {% block body %}
 
-    <h1 class="d-flex justify-content-center">Toutes les séries de la table program : </h1>
+    <h1 class="d-flex justify-content-center">Toutes les séries : </h1>
     <div class="container-fluid d-flex flex-wrap">
     {% for program in programs %}
         <div class="card-program card mb-5" style="min-width: 20%; max-width: 48%">
@@ -18,8 +18,12 @@
                             <p>Categorie : {{ program.category.name }}</p>
                         </div>
                         <div class="card-info-title card-body">
-                            <a class="btn btn-jaune" href="{{ path('wild_show', {'slug' : program.slug }) }}">Plus d'infos -></a>
+                            {% for actor in program.actors %}
+                                <a class="p-2" href="{{ path('actor_show', {'slug' : actor.slug}) }}">{{ actor.name }}</a>
+                            {% endfor %}
+
                         </div>
+                        <a class="btn btn-jaune" href="{{ path('wild_show', {'slug' : program.slug }) }}">Plus d'infos -></a>
 
 
                     </div>
