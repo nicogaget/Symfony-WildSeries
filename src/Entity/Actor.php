@@ -6,9 +6,12 @@ use App\Repository\ActorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ActorRepository::class)
+ * @UniqueEntity("name", message="Cet acteur est déjà enregistré")
  */
 class Actor
 {
@@ -21,6 +24,8 @@ class Actor
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Veuillez saisir le nom de l'acteur!!")
+     * @Assert\Length(max="100", maxMessage="Le nom saisi {{ value }} est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private $name;
 

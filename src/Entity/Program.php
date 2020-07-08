@@ -7,14 +7,17 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProgramRepository")
  * //On précise à l’entité que nous utiliserons l’upload du package Vich uploader
  * @Vich\Uploadable
+ * @UniqueEntity("title", message="Ce titre existe déjà")
  */
 class Program
 {
@@ -26,12 +29,20 @@ class Program
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=255)
+     * * @Assert\NotBlank(message="Chaque programme doit avoir un titre")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Chaque programme doit avoir un petit résumé")
+     * @Assert\Length(min="10", minMessage="C'est trop peu pour un résumé, faites un effort...")
+     *  @Assert\Regex(
+     *     pattern     = "/Plus.belle.la.vie/mi",
+     *     htmlPattern = false,
+     *     match = false,
+     *     message="On parle de vraies séries ici")
      */
     private $summary;
 

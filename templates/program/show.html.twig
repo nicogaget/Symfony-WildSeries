@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Program{% endblock %}
+{% block title %}Edition d'un program{% endblock %}
 
 {% block body %}
-    <h1>Program</h1>
-    <div class="container-fluid">
+    <h1 class="d-flex justify-content-around">Edition d'un program</h1>
+    <div class="container-fluid show" >
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th>Poster</th>
-                <td><img src="{{ program.poster }}" width="20%" ></td>
+                <td class="d-flex justify-content-center"><img src="{{ program.poster }}" width="20%" ></td>
             </tr>
             <tr>
                 <th>Slug</th>
@@ -35,7 +35,7 @@
     </table>
 
     <div class="program-footer d-flex justify-content-around">
-        <a class="btn btn-jaune" href="{{ path('program_index') }}">Retour à la liste</a>
+        <a class="btn btn-bleuc" href="{{ path('program_index') }}">Retour à la liste</a>
 
         <a class="btn btn-bleuf" href="{{ path('program_edit', {'id': program.id}) }}">Edition</a>
 

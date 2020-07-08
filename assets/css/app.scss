@@ -6,12 +6,16 @@ body{
     background-color: $jaune;
     color: $bleuc;
     width: 100%;
-    font-size: 18px;
+
+    font-size: 2vmin;
     font-family: 'Roboto Slab', serif;
 
 }
 h1, h2, h3, h4, h5, h6{
     font-family: 'Graduate', cursive;
+}
+h1 {
+    font-size: 3vw;
 }
 
 .btn-bleuc {
@@ -123,6 +127,7 @@ a{
 form{
     max-width: 90%;
     margin: auto;
+    font-size: 1.2em;
 }
 .edit{
     margin: 20px;
@@ -147,13 +152,20 @@ form{
 }
 
 #program-index{
-    background-color: $bleuc;
     padding: 20px;
     font-size: 1.2em;
     color: $bleuf;
 
     h1 {
+        color: $bleuf;
+    }
+
+    thead{
+        background-color: $bleuf;
         color: $jaune;
+        text-align: center;
+        font-size: 1.3em;
+        letter-spacing: 3px;
     }
 }
 .program-footer {
@@ -163,8 +175,11 @@ form{
 .delete-btn{
     margin: inherit;
 }
-.thead-jaune{
-    background-color: $jaune;
-    color: $bleuf;
-    text-align: center;
+.show {
+    width: 70%;
+
+    th {
+        background-color: $bleuc;
+    }
 }
+

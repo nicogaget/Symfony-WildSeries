@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EpisodeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EpisodeRepository::class)
@@ -19,6 +20,8 @@ class Episode
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Un programme doit avoir un titre !!")
+     * @Assert\Length(max="255", maxMessage="Le titre saisi {{ value }} est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
     private $title;
 
@@ -29,6 +32,8 @@ class Episode
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Chaque Episode doit avoir un petit résumé")
+     * @Assert\Length(min="10", minMessage="{{ value }} caractère( pour un résume, c'est trop peu, faites un effort...")
      */
     private $synopsis;
 
