@@ -6,6 +6,7 @@ use App\Repository\SeasonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SeasonRepository::class)
@@ -21,16 +22,20 @@ class Season
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Merci de renseigner le numéro de la season")
      */
     private $number;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
      */
     private $year;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Chaque saison doit avoir un petit descriptif")
+     * @Assert\Length(min="10", minMessage="{{ value }} caractère( pour un descriptif, c'est trop peu, faites un effort...")
      */
     private $description;
 

@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>Season index</h1>
+    <div class="container-fluid m-3">
+        <a  class="btn btn-bleuf" href="{{ path('season_new') }}">Ajouter une saison</a>
+    </div>
 
     <table class="table">
         <thead>
@@ -21,7 +24,7 @@
                 <td>{{ season.id }}</td>
                 <td>{{ season.number }}</td>
                 <td>{{ season.year }}</td>
-                <td>{{ season.descritpion }}</td>
+                <td>{{ season.description }}</td>
                 <td>
                     <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
                     <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
@@ -35,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('season_new') }}">Create new</a>
+    <a  class="btn btn-bleuf" href="{{ path('season_new') }}">Ajouter une saison</a>
 {% endblock %}
