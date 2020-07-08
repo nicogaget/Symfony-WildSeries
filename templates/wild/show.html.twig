@@ -11,12 +11,11 @@
                     </div>
                     <div class=" col-md-8">
                         <div class="card-info-title card-body">
-                            <h1 class="card-title">{{ program.title }}</h1>
                             <h2 class="card-text">{{ program.title }}</h2>
                             <p class="card-text">{{ program.summary }}</p>
                         </div>
                         <div class="card-info-title card-body">
-                            <h1 class="card-title">Les Saisons</h1>
+                            <h2 class="card-title">Les Saisons</h2>
                             <ul>
                                 {% for season in seasons %}
                                     <li><a href="{{ path('wild_season', {'id' : season.id}) }}"> {{ season.number }}</a></li>
