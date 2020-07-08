@@ -24,10 +24,10 @@
                             </ul>
                         </div>
                         <div class="card-info-title card-body">
-                            <h1 class="card-title">Acteurs :</h1>
+                            <h2 class="card-title">Acteurs :</h2>
                             <ul>
                                 {% for actor in actors %}
-                                    <li><a href="{{ path('wild_actor', {'id' : actor.id}) }}"> {{ actor.name }}</a></li>
+                                    <li><a href="{{ path('wild_actor', {'slug' : actor.slug}) }}"> {{ actor.name }}</a></li>
                                 {% endfor %}
                             </ul>
 

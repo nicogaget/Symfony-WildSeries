@@ -103,7 +103,7 @@ class WildController extends AbstractController
 
         $programs = $this->getDoctrine()->getRepository(Program::class)
             ->findBy(array('category' => $category),
-            array('id' => 'desc'),
+            array('slug' => 'ASC'),
             3);
         return $this->render('wild/category.html.twig',[
             'programs' => $programs,
@@ -140,7 +140,7 @@ class WildController extends AbstractController
     /**
      * @param Episode $episode
      * @return Response
-     * @Route("/episode/{id<^[0-9]+$>}", name="episode")
+     * @Route("/episode/{slug}", name="episode")
      */
     public function showEpisode(Episode $episode)
     {
@@ -158,18 +158,18 @@ class WildController extends AbstractController
             'program' => $program
         ]);
     }
-    /**
-     * @param int $id
-     * @return Response
-     * @Route("/actor/{id<^[0-9]+$>}", name="actor")
-     */
-    public function showActor(int $id):Response
-    {
-        $actor= $this->getDoctrine()
-            ->getRepository(Actor::class)
-            ->findOneBy(['id'=>$id]);
 
-        $programs=$actor->getPrograms();
+    /**
+     * @param string $slug
+     * @param ActorRepository $actorRepo
+     * @return Response
+     * @Route("/actor/{slug}", name="actor")
+     */
+    public function showActor(string $slug, ActorRepository $actorRepo):Response
+    {
+        $actor= $actorRepo->findOneBy(['slug'=>$slug]);
+
+        $programs = $actor->getPrograms();
 
         return $this->render('wild/actor.html.twig',[
             'actor'=>$actor,
