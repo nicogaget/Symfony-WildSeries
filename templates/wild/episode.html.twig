@@ -37,6 +37,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="jaune">
                                 <tr>
+                                    <th>Date</th>
                                     <th>Auteur</th>
                                     <th>Commentaire</th>
                                     <th>Note</th>
@@ -46,6 +47,7 @@
                                 {% if comments %}
                                     {% for comment in comments %}
                                         <tr>
+                                            <td class="bleuc"> {{ comment.createdAt | date("d/m")}} </td>
                                             <td class="jaune">{{ comment.author.nickname }}</td>
                                             <td class="bleuc">{{ comment.comment }}</td>
                                             <td class="jaune">{{ comment.rate }}</td>

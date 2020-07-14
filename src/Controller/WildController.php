@@ -9,6 +9,7 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\User;
 use App\Repository\ActorRepository;
+use App\Repository\CommentRepository;
 use App\Repository\ProgramRepository;
 use App\Repository\SeasonRepository;
 use App\Repository\UserRepository;
@@ -150,23 +151,27 @@ class WildController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @param UserRepository $userRepo
+     * @param CommentRepository $commentRepo
      * @return Response
      * @Route("/episode/{slug}", name="episode")
      */
-    public function showEpisode(Episode $episode,Request $request, EntityManagerInterface $manager, UserRepository $userRepo)
+    public function showEpisode(Episode $episode,Request $request, EntityManagerInterface $manager, UserRepository $userRepo, CommentRepository $commentRepo)
     {
         $season = $episode->getSeason();
         $program = $season->getProgram();
-        $comments = $episode->getComments();
+        $comments = $commentRepo->findBy(
+            ['episode' => $episode],
+            ['createdAt' => 'ASC']
+            );
         $nickname=[];
         $user = $userRepo->findOneBy(['id' => $this->getUser()]);
         foreach ($comments as $comment) {
             array_push($nickname, $comment->getAuthor()->getNickname());
         }
 
-        $Comment = new Comment();
+        $comment = new Comment();
 
-        $form = $this->createFormBuilder($Comment)
+        $form = $this->createFormBuilder($comment)
             ->add('rate', null, [
                 'attr' => [
                     'class' =>'form-control'
@@ -180,9 +185,10 @@ class WildController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $Comment->setEpisode($episode);
-            $Comment->setAuthor($user);
-            $manager->persist($Comment);
+            $comment->setEpisode($episode);
+            $comment->setAuthor($user);
+            $comment->setCreatedAt(new \DateTime('now'));
+            $manager->persist($comment);
             $manager->flush();
 
             return $this->redirectToRoute('wild_episode', ['slug'=>$episode->getSlug()]);

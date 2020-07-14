@@ -27,3 +27,5 @@ https://www.loom.com/share/a0fa7b1bde584e40a07a9ec37cd891c4
 Lien vidéo pour la quête 17 - Symfony : Introduction aux “Services”
 https://www.loom.com/share/d14e3b9addfa47ed997be23e92900586
 
+Lien video pour la quete 19 - Symfony : Gestion des utilisateurs
+https://www.loom.com/share/82911e2c47924895a34bf1eb7ae5ebe7

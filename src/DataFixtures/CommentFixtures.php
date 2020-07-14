@@ -17,6 +17,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
             $comment = new Comment();
             $comment->setRate( random_int(1,5));
             $comment->setComment($faker->text(80));
+            $comment->setCreatedAt($faker->dateTimeThisMonth);
             $comment->setAuthor(($this->getReference('subscriber_' . random_int(0,30))));
             $comment->setEpisode($this->getReference('episode_' . random_int(1,5)));
 
