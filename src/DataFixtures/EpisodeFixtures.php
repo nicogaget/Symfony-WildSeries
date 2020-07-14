@@ -29,12 +29,12 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
         {
             $episode = new Episode();
             $episode->setTitle($faker->text(50));
-            $episode->setNumber(random_int(1,5));
+            $episode->setNumber($faker->randomDigit);
             $episode->setSynopsis($faker->text);
             $episode->setSlug($slug->generate($episode->getTitle()));
 
             $episode->setSeason($this->getReference('season_' . random_int(1,14)));
-
+            $this->addReference('episode_' . $i, $episode);
             $manager->persist($episode);
 
         }

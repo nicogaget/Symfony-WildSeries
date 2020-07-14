@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="card-program card mb-5" style="max-width: 50%;">
+    <div class="card-program card mb-5" style="max-width: 95%;">
         <div class="card-prg">
             <div class="row-card-program row no-gutters">
                 <div class="col-md-4">
@@ -17,10 +17,18 @@
                         <h2>Liste des épisodes :</h2>
                         <div>
                             {% for episode in episodes %}
-                                <div class="liste">
+                                <br>
+                                <a href=" {{ path('wild_episode', {'slug' : episode.slug } ) }}">
+                                    <div class="liste">
                                     <p class="episode">Episode {{ episode.number }} </p>
-                                    <p>{{ episode.synopsis }}</p>
-                                </div>
+
+                                    {{ episode.title }}
+                                        <br>
+                                        <br>
+                                    {{ episode.synopsis }}
+
+                                    </div>
+                                </a>
                             {% endfor %}
                         </div>
                     </div>

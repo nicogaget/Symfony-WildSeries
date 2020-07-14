@@ -125,7 +125,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         }
 
         $faker  =  Faker\Factory::create('fr_FR');
-        for ( $p =6 ; $p <15; $p++) {
+        for ( $p =6 ; $p <16; $p++) {
             $program = new Program();
             $program->setTitle($faker->text(30));
             $program->setSummary($faker->text);

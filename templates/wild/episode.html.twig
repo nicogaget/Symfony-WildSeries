@@ -1,21 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <div class="card-program card mb-5" style="max-width: 50%;">
+    <div class="card-program card w-75" id="show_episode" >
         <div class="card-prg">
             <div class="row-card-program row no-gutters">
                 <div class="col-md-4">
                     <img src="{{ program.poster}}" class="card-img" alt="...">
+                        <div class="card-info-title card-body mt-5" style="margin-left: inherit">
+                        {% if app.user %}
+                            {{ form_start(formNewComment) }}
+                            <div class="form-group">
+                                <label for="rate">Note</label>
+                                {{ form_widget(formNewComment.rate) }}
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Commentaire</label>
+                                {{ form_widget(formNewComment.comment) }}
+                            </div>
+                            <button type="submit" class="btn btn-jaune d-flex justify-content-center"> Poster</button>
+                            {{ form_end(formNewComment) }}
+
+                        {% endif %}
+                        </div>
                 </div>
                 <div class=" col-md-8">
                     <div class="card-info-title card-body">
-                        <h1 class="card-title">Episode {{ episode.number }} de la Saison {{ season.number }}</h1>
+                        <h1 class="card-title">Episode {{ episode.number }} - Saison {{ season.number }}</h1>
                         <h2 class="card-text">{{ episode.title }}</h2>
                         <p class="card-text">{{ episode.synopsis }}</p>
+                    </div>
+                    <div class="card-info-title card-body">
+                        <h3 class="card-title">Commentaires :</h3>
 
+
+                        <div>
+                            <table class="table table-bordered table-hover">
+                                <thead class="jaune">
+                                <tr>
+                                    <th>Auteur</th>
+                                    <th>Commentaire</th>
+                                    <th>Note</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if comments %}
+                                    {% for comment in comments %}
+                                        <tr>
+                                            <td class="jaune">{{ comment.author.nickname }}</td>
+                                            <td class="bleuc">{{ comment.comment }}</td>
+                                            <td class="jaune">{{ comment.rate }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <h2 class="card-text"></h2>
+                        <p class="card-text"></p>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

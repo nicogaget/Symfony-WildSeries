@@ -16,11 +16,21 @@ h1, h2, h3, h4, h5, h6{
 }
 h1 {
     font-size: 3vw;
-    color: $bleuf;
+
 }
 h2 {
     color: $jaune;
 }
+
+#login {
+    h1 {
+        color: $jaune;
+    }
+    label {
+        color: $bleuf;
+    }
+}
+
 
 .btn-bleuc {
     background-color: $bleuc;
@@ -56,6 +66,10 @@ h2 {
     font-size: 36px;
     font-family: 'Graduate', cursive;
 
+}
+
+.signin {
+    margin-left: auto;
 }
 a{
     color: $jaune;
@@ -197,5 +211,9 @@ form{
 .table-index-small {
     width: 50%;
     margin: auto;
+}
+
+#show_episode {
+
 }
 

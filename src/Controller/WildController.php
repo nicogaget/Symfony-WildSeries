@@ -3,19 +3,27 @@
 
 namespace App\Controller;
 
-use App\Entity\Actor;
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
-use App\Entity\Season;
+use App\Entity\User;
 use App\Repository\ActorRepository;
 use App\Repository\ProgramRepository;
 use App\Repository\SeasonRepository;
+use App\Repository\UserRepository;
 use App\Service\Slugify;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+
+
 
 /**
  * Class WildController
@@ -42,7 +50,6 @@ class WildController extends AbstractController
                 'No program found in program\'s table.'
             );
         }
-
 
         return $this->render('wild/index.html.twig', [
             'website' => 'Wild Séries',
@@ -140,23 +147,60 @@ class WildController extends AbstractController
 
     /**
      * @param Episode $episode
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param UserRepository $userRepo
      * @return Response
      * @Route("/episode/{slug}", name="episode")
      */
-    public function showEpisode(Episode $episode)
+    public function showEpisode(Episode $episode,Request $request, EntityManagerInterface $manager, UserRepository $userRepo)
     {
         $season = $episode->getSeason();
         $program = $season->getProgram();
+        $comments = $episode->getComments();
+        $nickname=[];
+        $user = $userRepo->findOneBy(['id' => $this->getUser()]);
+        foreach ($comments as $comment) {
+            array_push($nickname, $comment->getAuthor()->getNickname());
+        }
+
+        $Comment = new Comment();
+
+        $form = $this->createFormBuilder($Comment)
+            ->add('rate', null, [
+                'attr' => [
+                    'class' =>'form-control'
+                ]
+            ])
+            ->add('comment', TextareaType::class, [
+                'attr' => [
+                    'class' =>'form-control']
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $Comment->setEpisode($episode);
+            $Comment->setAuthor($user);
+            $manager->persist($Comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('wild_episode', ['slug'=>$episode->getSlug()]);
+        }
+
 
         if (!$episode) {
             throw $this->createNotFoundException(
                 'No episode found in episode\'s table.'
             );
         }
-        return $this->render('episode.html;twig', [
+        return $this->render('wild/episode.html.twig', [
             'episode' => $episode,
             'season' => $season,
-            'program' => $program
+            'program' => $program,
+            'comments' => $comments,
+            'nickname' =>$nickname,
+            'formNewComment' =>$form->createView(),
         ]);
     }
 
