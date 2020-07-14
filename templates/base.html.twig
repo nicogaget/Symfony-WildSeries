@@ -11,6 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
+{% for category, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
 <header>{% include 'navbar.html.twig' %}</header>
 {% block body %}{% endblock %}
 <script src="jquery.js"></script>

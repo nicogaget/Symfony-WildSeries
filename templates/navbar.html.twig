@@ -17,11 +17,6 @@
             </div>
         </div>
 
-{#        <div class="nav-item nav-link">#}
-{#            {% if not app.user %}#}
-{#            <a class="nav-item nav-link" href="{{ path('app_register') }}">Register</a>#}
-{#            {% endif %}#}
-{#        </div>#}
 
         <div>
             {% if is_granted("ROLE_ADMIN")  %}
@@ -29,11 +24,14 @@
             {%endif%}
 
         </div>
+        {{ dump(app.user) }}
         <div class="nav-item nav-link signin">
             {% if app.user %}
-                {{ app.user.nickname }}
+
+                <a href="{{ path('user_edit', {'id' : app.user.id}) }}"> Mon Compte</a>
                 <a href="{{ path('app_logout') }}"> Deconnexion</a>
             {% else %}
+                <a href="{{ path('app_register') }}"> S'enregistrer</a>
                 <a href="{{ path('app_login') }}"> Se connecter</a>
             {% endif %}
         </div>
