@@ -29,3 +29,6 @@ https://www.loom.com/share/d14e3b9addfa47ed997be23e92900586
 
 Lien video pour la quete 19 - Symfony : Gestion des utilisateurs
 https://www.loom.com/share/82911e2c47924895a34bf1eb7ae5ebe7
+
+lien video pour la quete 21 - Symfony : Inscription d’un utilisateur
+https://www.loom.com/share/c33f6bd3739248ac801ac7151e89c4ad
