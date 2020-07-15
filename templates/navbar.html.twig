@@ -24,15 +24,14 @@
             {%endif%}
 
         </div>
-        {{ dump(app.user) }}
         <div class="nav-item nav-link signin">
             {% if app.user %}
 
-                <a href="{{ path('user_edit', {'id' : app.user.id}) }}"> Mon Compte</a>
-                <a href="{{ path('app_logout') }}"> Deconnexion</a>
+                <a class="p-4" href="{{ path('wild_myProfil') }}"> Mon Compte</a>
+                <a class="p-4" href="{{ path('app_logout') }}"> Deconnexion</a>
             {% else %}
-                <a href="{{ path('app_register') }}"> S'enregistrer</a>
-                <a href="{{ path('app_login') }}"> Se connecter</a>
+                <a class="p-4" href="{{ path('app_register') }}"> S'inscrire</a>
+                <a  class="p-4" href="{{ path('app_login') }}"> Se connecter</a>
             {% endif %}
         </div>
     </div>

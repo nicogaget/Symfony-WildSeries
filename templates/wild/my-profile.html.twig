@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <h1 class="d-flex justify-content-center m-4">Mon profil</h1>
+    <div class="card-program card mb-5" style="max-width: 50%;">
+        <div class="card-prg">
+            <div class="row-card-program row no-gutters">
+
+                <div class=" col-md-8">
+                    <div class="card-info-title card-body">
+                        <h2>Pseudo :  {{ app.user.nickname }}</h2>
+                        <h2>Email : {{ app.user.email }}</h2>
+                    </div>
+                    <div>
+                        <a class="btn btn-jaune" href="#">Changer d'adresse mail</a>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
