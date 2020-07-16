@@ -31,7 +31,9 @@
                 <td class="align-middle " width="6%">{{ program.year }}</td>
                 <td class="btn-actions align-middle bleuc">
                     <a class="btn btn-bleuf align-middle" href="{{ path('program_show', {'slug': program.slug}) }}">Voir +</a>
+                    {% if is_granted("ROLE_ADMIN") %}
                     <a class="btn btn-jaune align-middle" href="{{ path('program_edit', {'slug': program.slug}) }}">Editer</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

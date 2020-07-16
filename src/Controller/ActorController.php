@@ -6,6 +6,7 @@ use App\Entity\Actor;
 use App\Form\ActorType;
 use App\Repository\ActorRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,6 +34,7 @@ class ActorController extends AbstractController
      * @param Request $request
      * @param Slugify $slugify
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request,Slugify $slugify): Response
     {
@@ -46,8 +48,11 @@ class ActorController extends AbstractController
             $entityManager->persist($actor);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Un nouvel acteur a bien été ajouté');
+
             return $this->redirectToRoute('actor_index');
         }
+
 
         return $this->render('actor/new.html.twig', [
             'actor' => $actor,
@@ -75,6 +80,7 @@ class ActorController extends AbstractController
      * @param Actor $actor
      * @param Slugify $slugify
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Actor $actor, Slugify $slugify): Response
     {
@@ -98,6 +104,7 @@ class ActorController extends AbstractController
      * @param Request $request
      * @param Actor $actor
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Actor $actor): Response
     {
@@ -106,6 +113,7 @@ class ActorController extends AbstractController
             $entityManager->remove($actor);
             $entityManager->flush();
         }
+        $this->addFlash('danger', "L'acteur a bien été supprimé");
 
         return $this->redirectToRoute('actor_index');
     }

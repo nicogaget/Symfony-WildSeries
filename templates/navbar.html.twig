@@ -17,13 +17,6 @@
             </div>
         </div>
 
-
-        <div>
-            {% if is_granted("ROLE_ADMIN")  %}
-                <p>Admin</p>
-            {%endif%}
-
-        </div>
         <div class="nav-item nav-link signin">
             {% if app.user %}
 
@@ -37,8 +30,9 @@
     </div>
 </nav>
 {% if is_granted("ROLE_ADMIN")  %}
-<nav class="navbar navbar-expand-lg bleuc ">
+<nav class="navbar navbar-expand-lg bleuc nav-admin">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <h2 class="navbar navbar-nav">Administration : </h2>
         <div class="navbar navbar-nav">
             <a class="nav-item nav-link" href="{{ path('program_index') }}">Séries</a>
         </div>

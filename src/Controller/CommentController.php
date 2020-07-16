@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,8 @@ class CommentController extends AbstractController
 {
     /**
      * @Route("/", name="comment_index", methods={"GET"})
+     * @param CommentRepository $commentRepository
+     * @return Response
      */
     public function index(CommentRepository $commentRepository): Response
     {
@@ -27,6 +30,9 @@ class CommentController extends AbstractController
 
     /**
      * @Route("/new", name="comment_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -41,7 +47,7 @@ class CommentController extends AbstractController
 
             return $this->redirectToRoute('comment_index');
         }
-
+        $this->addFlash('success', 'Votre commentaire a bien été ajouté');
         return $this->render('comment/new.html.twig', [
             'comment' => $comment,
             'form' => $form->createView(),
@@ -50,6 +56,8 @@ class CommentController extends AbstractController
 
     /**
      * @Route("/{id}", name="comment_show", methods={"GET"})
+     * @param Comment $comment
+     * @return Response
      */
     public function show(Comment $comment): Response
     {
@@ -60,6 +68,10 @@ class CommentController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="comment_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Comment $comment
+     * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Comment $comment): Response
     {
@@ -80,6 +92,9 @@ class CommentController extends AbstractController
 
     /**
      * @Route("/{id}", name="comment_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Comment $comment
+     * @return Response
      */
     public function delete(Request $request, Comment $comment): Response
     {
@@ -88,6 +103,7 @@ class CommentController extends AbstractController
             $entityManager->remove($comment);
             $entityManager->flush();
         }
+        $this->addFlash('danger', 'Le commentaire a bien été supprimé');
 
         return $this->redirectToRoute('comment_index');
     }

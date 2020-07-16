@@ -21,7 +21,9 @@
                 <td>{{ actor.name }}</td>
                 <td>
                     <a class="btn btn-bleuc" href="{{ path('actor_show', {'slug': actor.slug}) }}">Voir +</a>
+                    {% if is_granted("ROLE_ADMIN") %}
                     <a class="btn btn-bleuf" href="{{ path('actor_edit', {'slug': actor.slug}) }}">Editer</a>
+                    {%endif%}
                 </td>
             </tr>
         {% else %}

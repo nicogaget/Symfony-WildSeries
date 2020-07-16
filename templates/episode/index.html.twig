@@ -23,7 +23,9 @@
                 <td>{{ episode.synopsis }}</td>
                 <td>
                     <a class="btn btn-bleuc" href="{{ path('episode_show', {'slug': episode.slug}) }}">Voir +</a>
+                    {% if is_granted("ROLE_ADMIN") %}
                     <a class="btn btn-bleuf" href="{{ path('episode_edit', {'slug': episode.slug}) }}">Edition</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

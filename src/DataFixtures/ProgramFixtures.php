@@ -109,7 +109,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::PROGRAMS as $title => $data) {
             $program = new Program();
             $program->setTitle($title);
-            $program->setsummary($data['summary']);
+            $program->setSummary($data['summary']);
             $program->setPoster($data['poster']);
             $program->setCountry($data['country']);
             $program->setYear($data['year']);

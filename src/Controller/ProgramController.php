@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,7 @@ class ProgramController extends AbstractController
     public function index(ProgramRepository $programRepository): Response
     {
         return $this->render('program/index.html.twig', [
-            'programs' => $programRepository->findAll()
+            'programs' => $programRepository->findAllWithCategories()
         ]);
     }
 
@@ -38,6 +39,7 @@ class ProgramController extends AbstractController
      * @param MailerInterface $mailer
      * @return Response
      * @throws TransportExceptionInterface
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify, MailerInterface $mailer): Response
     {
@@ -60,6 +62,7 @@ class ProgramController extends AbstractController
                 ->html('<p>Une nouvelle série vient d\'être publiée sur Wild Séries !</p>');
 
             $mailer->send($email);
+            $this->addFlash('success', 'Un nouveau programme a bien été ajouté');
 
             return $this->redirectToRoute('program_index');
         }
@@ -88,6 +91,7 @@ class ProgramController extends AbstractController
      * @param Request $request
      * @param Program $program
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Program $program): Response
     {
@@ -111,6 +115,7 @@ class ProgramController extends AbstractController
      * @param Request $request
      * @param Program $program
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Program $program): Response
     {
@@ -119,7 +124,7 @@ class ProgramController extends AbstractController
             $entityManager->remove($program);
             $entityManager->flush();
         }
-
+        $this->addFlash('danger', 'Le programme a bien été supprimé');
         return $this->redirectToRoute('program_index');
     }
 }

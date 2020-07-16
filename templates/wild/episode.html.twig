@@ -49,8 +49,16 @@
                                         <tr>
                                             <td class="bleuc"> {{ comment.createdAt | date("d/m")}} </td>
                                             <td class="jaune">{{ comment.author.nickname }}</td>
-                                            <td class="bleuc">{{ comment.comment }}</td>
-                                            <td class="jaune">{{ comment.rate }}</td>
+                                            <td class="bleuc">{{ comment.comment }}
+                                            </td>
+                                            <td class="jaune">{{ comment.rate }}
+
+                                                <div style="color: red">
+                                                    {% if app.user.nickname == comment.author.nickname %}
+                                                        {{ include('wild/_delete_form.html.twig') }}
+                                                    {% endif %}
+                                                </div></td>
+
                                         </tr>
                                     {% endfor %}
                                 {% endif %}

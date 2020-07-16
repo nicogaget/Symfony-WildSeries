@@ -6,6 +6,7 @@ use App\Entity\Episode;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,6 +34,7 @@ class EpisodeController extends AbstractController
      * @param Request $request
      * @param Slugify $slugify
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -45,6 +47,8 @@ class EpisodeController extends AbstractController
             $episode->setSlug($slugify->generate($episode->getTitle()));
             $entityManager->persist($episode);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Un nouvel épisode a bien été ajouté');
 
             return $this->redirectToRoute('episode_index');
         }
@@ -72,6 +76,7 @@ class EpisodeController extends AbstractController
      * @param Request $request
      * @param Episode $episode
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Episode $episode): Response
     {
@@ -95,6 +100,7 @@ class EpisodeController extends AbstractController
      * @param Request $request
      * @param Episode $episode
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Episode $episode): Response
     {
@@ -103,7 +109,7 @@ class EpisodeController extends AbstractController
             $entityManager->remove($episode);
             $entityManager->flush();
         }
-
+        $this->addFlash('danger', "L'épisode' a bien été supprimé");
         return $this->redirectToRoute('episode_index');
     }
 }

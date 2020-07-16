@@ -32,3 +32,6 @@ https://www.loom.com/share/82911e2c47924895a34bf1eb7ae5ebe7
 
 lien video pour la quete 21 - Symfony : Inscription d’un utilisateur
 https://www.loom.com/share/c33f6bd3739248ac801ac7151e89c4ad
+
+Lien video pour la quête 23 - Symfony : Sessions et messages flash
+https://www.loom.com/share/ef7a9d3bca264af2b770371724b582d4

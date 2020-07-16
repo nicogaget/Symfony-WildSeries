@@ -22,7 +22,9 @@
                 <td>{{ comment.rate }}</td>
                 <td>
                     <a href="{{ path('comment_show', {'id': comment.id}) }}">show</a>
+                    {% if is_granted("ROLE_ADMIN") %}
                     <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
