@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Program;
+use App\Entity\User;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -127,4 +130,28 @@ class ProgramController extends AbstractController
         $this->addFlash('danger', 'Le programme a bien été supprimé');
         return $this->redirectToRoute('program_index');
     }
+
+    /**
+     * @param Program $program
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return JsonResponse
+     */
+    public function addToWatchlist(Program $program, Request $request, EntityManagerInterface $manager)
+    {
+        $user = $this->getUser();
+        if($user->getWatchlist()->contains($program)) {
+            $user->removeWatchlist($program);
+        }else {
+            $user->addWatchlist($program);
+        }
+        $manager->flush();
+
+        //return $this->redirectToRoute('program_show', ["slug" => $program->getSlug()]);
+        return $this->json([
+            'isInWatchlist' => $this->getUser()->isInWatchlist($program)
+        ]);
+
+    }
+
 }
